@@ -1,4 +1,6 @@
 ---
 - hosts: all
   roles:
-    - role: redis
+    - repos
+    - docker
+    - redis

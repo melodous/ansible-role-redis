@@ -93,7 +93,7 @@ docs: venv_docs
 	@echo ">>> Generating documentation ..."
 	[ -z "$$VIRTUAL_ENV" ] && source $(VENV)/bin/activate; \
 	cd docs && make clean && make rst; \
-	pandoc --from=rst --to=markdown --output=README.md docs/_build/rst/index.rst
+	pandoc --from=rst --to=markdown --output=../README.md _build/rst/index.rst
 
 
 venv_docs: $(REQ_DOCS)
