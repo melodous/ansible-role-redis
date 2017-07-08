@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  author: your name
+  description:
+  company: TelefonicaI+D
+  platforms:
+    - name: RedHat
+      versions:
+        - 6
+        - 7
+dependencies: []

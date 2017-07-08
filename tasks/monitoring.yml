@@ -1,0 +1,30 @@
+---
+- name: reload facts
+  setup: filter='*'
+
+#For use ansible docker module
+- name: Install pip
+  yum: name=python-pip
+
+- name: Configure local pypi repository
+  template: src=pip.conf.j2 dest=/etc/pip.conf owner=root group=root mode=0750
+  when: pypi_artifactory | default('') != ''
+
+
+- name: Install redis from pip
+  pip: name={{ item }} state=latest
+  with_items:
+    - redis
+
+- name: Create zabbix agent dir for scripts
+  file: path=/etc/zabbix/script/redis state=directory mode=755 owner=root group=root
+
+- name: Copy redis scripts for monitoring
+  copy: src=zbx_redis_stats.py dest=/etc/zabbix/script/redis/zbx_redis_stats.py mode=755 owner=root group=root
+  notify:
+    - restart zabbix-agent
+
+- name: Copy redis conf for monitoring
+  copy: src=zbx_redis.conf dest=/etc/zabbix/zabbix_agentd.d/zbx_redis.conf mode=644 owner=root group=root
+  notify:
+    - restart zabbix-agent

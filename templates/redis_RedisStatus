@@ -1,0 +1,1 @@
+cmd=/usr/lib64/nagios/plugins/check_redis.py -A alive -H "{{ ansible_docker0.ipv4.address }}"
