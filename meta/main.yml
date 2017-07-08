@@ -1,11 +1,10 @@
 ---
 galaxy_info:
-  author: your name
-  description:
-  company: TelefonicaI+D
+  author: Raul Melo
+  description: Redis ansible redis over Docker
+  company: OpenSolutions
   platforms:
     - name: RedHat
       versions:
-        - 6
         - 7
 dependencies: []

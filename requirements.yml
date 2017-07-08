@@ -1,0 +1,8 @@
+- src: https://github.com/melodous/ansible-role-repos.git
+  scm: git
+  version: master
+  name: repos
+- src: https://github.com/melodous/ansible-role-docker.git
+  scm: git
+  version: master
+  name: pd-docker
