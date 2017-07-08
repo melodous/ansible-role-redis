@@ -1,4 +1,4 @@
-APP                = Redis
+APP                = redis
 ROOT               = $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 REQ                = requirements.txt
 REQ_DOCS           = requirements_docs.txt
