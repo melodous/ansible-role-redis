@@ -24,6 +24,7 @@ node {
 
        stage('Molecule converge'){
 
+         sh 'make dependency'
          sh 'make converge'
 
 			 }

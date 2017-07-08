@@ -5,4 +5,4 @@
 - src: https://github.com/melodous/ansible-role-docker.git
   scm: git
   version: master
-  name: pd-docker
+  name: docker
