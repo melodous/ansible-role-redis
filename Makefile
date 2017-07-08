@@ -72,7 +72,7 @@ create:
 converge:
 	@echo ">>> Runing $(PLAFORM) converge ..."
 	[ -z "$$VIRTUAL_ENV" ] && source $(VENV)/bin/activate; \
-	molecule create --platform=$(PLATFORM);
+	molecule converge --platform=$(PLATFORM);
 
 syntax: venv linkrole delete
 	@echo ">>> Runing $(PLAFORM) tests ..."
