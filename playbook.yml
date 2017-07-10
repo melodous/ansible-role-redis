@@ -1,6 +1,7 @@
 ---
 - hosts: all
   vars:
+    repo_epel: true
     docker_private_registry: nexus.local:18079
     docker_private_registry_insecure: true
     docker_login_user: ci
