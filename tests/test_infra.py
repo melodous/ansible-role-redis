@@ -49,7 +49,7 @@ def test_monitoring(Command):
             "startSearch": "true"
         }
     )
-    assert  item[0]['lastvalue'] == '1'
+    assert item[0]['lastvalue'] == '1'
     Command.run_expect([0], "docker stop redis")
     check_item(zbx, zbx_host, "net.tcp.port", '0', 60)
     Command.run_expect([0], "docker start redis")
