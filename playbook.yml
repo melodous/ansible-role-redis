@@ -1,6 +1,42 @@
 ---
 - hosts: all
+  vars:
+    docker_private_registry: nexus.local:18079
+    docker_private_registry_insecure: true
+    docker_login_user: ci
+    docker_login_password: password
+    redis_docker_image: nexus.local:18079/redis
+    zabbix_frontend_docker_image: nexus.local:18079/zabbix/zabbix-web-nginx-pgsql
+    zabbix_server_docker_image: nexus.local:18079/zabbix/zabbix-server-pgsql
+    postgres_docker_image: nexus.local:18079/postgres
+    agent_server: "{{ ansible_enp0s8.ipv4.address}}"
+    zabbix_api_url: "http://{{ ansible_enp0s8.ipv4.address}}"
+    zabbix_api_create_hostgroup: True
+    zabbix_api_create_hosts: True
+    zabbix_create_hostgroup: present
+    zabbix_create_host: present
+    agent_listeninterface: enp0s8
+    agent_interfaces:
+      - type: 1
+        main: 1
+        useip: "{{ zabbix_useuip }}"
+        ip: "{{ agent_ip }}"
+        dns: "{{ ansible_fqdn }}"
+        port: "{{ agent_listenport }}"
+    additional_hosts_entries:
+      - name: nexus.local
+        ip: 192.168.1.200
+    zabbix_host_groups:
+      - Linux servers
+    zabbix_link_templates:
+      - Template OS Linux
+      - Template Redis
   roles:
+    - hosts
     - repos
+    - pip
     - docker
+    - zabbix-server-docker
+    - { role: zabbix-provisioner, zabbix_server: "{{ zabbix_api_url }}" }
+    - zabbix-agent
     - redis

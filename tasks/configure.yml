@@ -1,22 +1,12 @@
 ---
-#- name: login to registry
-#  shell: "docker login -e {{ docker_registry_mail }} -p {{ docker_registry_pass }} -u {{ docker_registry_user }} {{ docker_registry_host }}"
+#- name: Pull redis image
+#  shell: docker pull "{{ redis_docker_image }}:{{ redis_version }}"
+#  register: result_docker
 #  changed_when: False
-#  register: result_login
-#  until: result_login|success
+#  until: result_docker|success
 #  retries: 3
 #  delay: 1
-#  when: docker_login
 #  tags: update
-
-- name: Pull redis image
-  shell: docker pull "{{ redis_docker_image }}:{{ redis_version }}"
-  register: result_docker
-  changed_when: False
-  until: result_docker|success
-  retries: 3
-  delay: 1
-  tags: update
 
 - name: Start redis containers
   docker_container:
@@ -26,7 +16,7 @@
     state: started
     log_driver: json-file
     log_options:
-      max-file: "1" 
+      max-file: "1"
       max-size: "20m"
     labels: "{{ redis_docker_labels }}"
     restart_policy: unless-stopped

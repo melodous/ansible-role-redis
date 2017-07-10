@@ -23,11 +23,17 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 512
+        memory: 1024
         cpus: 2
   instances:
     - name: Redis
       ansible_groups:
         - group1
+      interfaces:
+        - network_name: private_network
+          type: dhcp
+          auto_config: true
 verifier:
   name: testinfra
+  options:
+    sudo: True

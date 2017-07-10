@@ -6,3 +6,19 @@
   scm: git
   version: master
   name: docker
+- src: https://github.com/melodous/ansible-role-zabbix-server-docker.git
+  scm: git
+  version: master
+  name: zabbix-server-docker
+- src: https://github.com/melodous/ansible-role-zabbix-agent.git
+  scm: git
+  version: master
+  name: zabbix-agent
+- src: https://github.com/melodous/ansible-role-hosts.git
+  scm: git
+  version: master
+  name: hosts
+- src: https://github.com/melodous/ansible-role-zabbix-provisioner.git
+  scm: git
+  version: master
+  name: zabbix-provisioner

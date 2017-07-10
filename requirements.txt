@@ -2,3 +2,4 @@ molecule==1.25.0
 chardet
 python-vagrant
 arrow
+zabbix-api
