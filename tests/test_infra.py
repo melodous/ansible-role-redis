@@ -33,7 +33,8 @@ def test_socket(Socket):
 
 def test_monitoring(Command):
     from zabbix_api import ZabbixAPI
-    import datetime, time
+    import datetime
+    import time
     zbx = ZabbixAPI("http://172.28.128.3", timeout=10)
     zbx.login("Admin", "zabbix")
     zbx_host_list = get_host_by_host_name(zbx, "Redis")
@@ -52,30 +53,14 @@ def test_monitoring(Command):
     )
     assert  item[0]['lastvalue'] == '1'
     Command.run_expect([0], "docker stop redis")
-    timeout = 60
-    init = datetime.datetime.now()
-    while True:
-        item = zbx.item.get(
-            {
-                "output": ["lastvalue"],
-                "hostids": zbx_host,
-                "search": {
-                    "key_": "net.tcp.port"
-                },
-                "startSearch": "true"
-            }
-        )
-        if item[0]['lastvalue'] == '0':
-            break
-        diff = (datetime.datetime.now() - init).total_seconds()
-        assert int(diff) < timeout
-        time.sleep(5)
+    check_item(zbx, zbx_host, "net.tcp.port", '0', 60)
     Command.run_expect([0], "docker start redis")
     check_item(zbx, zbx_host, "net.tcp.port", '1', 60)
 
 
 def check_item(zbx, host, key, value, timeout):
-    import datetime, time
+    import datetime
+    import time
     init = datetime.datetime.now()
     while True:
         item = zbx.item.get(
