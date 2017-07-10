@@ -33,8 +33,6 @@ def test_socket(Socket):
 
 def test_monitoring(Command):
     from zabbix_api import ZabbixAPI
-    import datetime
-    import time
     zbx = ZabbixAPI("http://172.28.128.3", timeout=10)
     zbx.login("Admin", "zabbix")
     zbx_host_list = get_host_by_host_name(zbx, "Redis")
