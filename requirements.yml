@@ -22,3 +22,7 @@
   scm: git
   version: master
   name: zabbix-provisioner
+- src: https://github.com/melodous/ansible-role-pip.git
+  scm: git
+  version: master
+  name: pip
