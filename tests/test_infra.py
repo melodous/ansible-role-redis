@@ -38,7 +38,6 @@ def test_monitoring(Command):
     zbx_host_list = get_host_by_host_name(zbx, "Redis")
     assert len(zbx_host_list) == 1
     zbx_host = zbx_host_list[0]['hostid']
-    assert zbx_host == '10105'
     item = zbx.item.get(
         {
             "output": ["lastvalue"],
