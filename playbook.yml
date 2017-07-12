@@ -10,8 +10,8 @@
     zabbix_frontend_docker_image: nexus.local:18079/zabbix/zabbix-web-nginx-pgsql
     zabbix_server_docker_image: nexus.local:18079/zabbix/zabbix-server-pgsql
     postgres_docker_image: nexus.local:18079/postgres
-    agent_server: "{{ ansible_enp0s8.ipv4.address}}"
-    zabbix_api_url: "http://{{ ansible_enp0s8.ipv4.address}}"
+    agent_server: "{{ ansible_enp0s8.ipv4.address }}"
+    zabbix_api_url: "http://{{ ansible_enp0s8.ipv4.address }}"
     zabbix_api_create_hostgroup: True
     zabbix_api_create_hosts: True
     zabbix_create_hostgroup: present

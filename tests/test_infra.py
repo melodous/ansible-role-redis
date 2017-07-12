@@ -50,9 +50,9 @@ def test_monitoring(Command):
     )
     assert item[0]['lastvalue'] == '1'
     Command.run_expect([0], "docker stop redis")
-    check_item(zbx, zbx_host, "net.tcp.port", '0', 60)
+    check_item(zbx, zbx_host, "net.tcp.port", '0', 120)
     Command.run_expect([0], "docker start redis")
-    check_item(zbx, zbx_host, "net.tcp.port", '1', 60)
+    check_item(zbx, zbx_host, "net.tcp.port", '1', 120)
 
 
 def check_item(zbx, host, key, value, timeout):
