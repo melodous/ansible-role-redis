@@ -86,6 +86,12 @@ changelog.
 
 -   First change
 
+### Redis v0.0.2 - 2017/07/13
+
+##### Added
+
+-   Fixed testinfra tests
+
 ### Redis v0.0.1 - 2017/07/12
 
 ##### Added
@@ -97,6 +103,7 @@ Copyright
 
 Redis
 
-Copyright (C) DATE Raul Melo &lt;<raul.melo@opensolutions.cloud>&gt;
+Copyright (C) 2017/07/12 Raul Melo
+&lt;<raul.melo@opensolutions.cloud>&gt;
 
 LICENSE

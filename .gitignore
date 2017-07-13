@@ -10,3 +10,4 @@ tests/*.pyc
 tests/__pycache__/
 ansible-lint/*pyc
 docs/_build
+*.pyc
