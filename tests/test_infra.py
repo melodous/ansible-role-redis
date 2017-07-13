@@ -31,9 +31,11 @@ def test_socket(Socket):
     assert Socket("tcp://0.0.0.0:6379").is_listening
 
 
-def test_monitoring(Command):
+def test_monitoring(Command, Ansible):
     from zabbix_api import ZabbixAPI
-    zbx = ZabbixAPI("http://172.28.128.3", timeout=10)
+    zbx_if = Ansible("setup")['ansible_facts']['ansible_enp0s8']
+    zbx_ip = zbx_if['ipv4']['address']
+    zbx = ZabbixAPI("http://%s" % zbx_ip, timeout=10)
     zbx.login("Admin", "zabbix")
     zbx_host_list = get_host_by_host_name(zbx, "Redis")
     assert len(zbx_host_list) == 1
@@ -49,9 +51,9 @@ def test_monitoring(Command):
         }
     )
     assert item[0]['lastvalue'] == '1'
-    Command.run_expect([0], "docker stop redis")
+    Command.run_expect([0], "systemctl stop redis")
     check_item(zbx, zbx_host, "net.tcp.port", '0', 120)
-    Command.run_expect([0], "docker start redis")
+    Command.run_expect([0], "systemctl start redis")
     check_item(zbx, zbx_host, "net.tcp.port", '1', 120)
 
 
